@@ -26,7 +26,7 @@ sub EVENT_SAY {
 		quest::say("Good.  I have an easy, but very important, task for you.  We require all young members to cleanse these woods of the troublesome pixie tricksters.  Take this pouch, fill it, and when it is combined, return it to me.  I just may have some used armor lying around for you.");
 		quest::summonitem(17957);#Empty Pouch
 	}
-	if($text=~/dark assassin/i) {
+	if($text=~/dark assassin/i and quest::is_the_planes_of_power_enabled()) {
 		quest::emote("squints at you and says, 'So you have heard about him as well? I had heard of him through the rogue grapevine, so I was wary when the home guard spoke of the arrival of a dark stranger. I was approaching him from behind and some loud ranger clompipng about in the bushes must of spooked him, for off he ran. As he was running I took the liberty to swipe a piece of paper protruding from his pocket.'");
 		quest::emote("mumbles to himself, 'Now where did I put that note?'");
 	}
@@ -40,7 +40,7 @@ sub EVENT_ITEM {
 		quest::faction(316, 10);#Scouts of Tunare
 		quest::exp(800);#10% of level 3 experience.  Newbie quest, being a bit generous compared to the guidelines.
 	} 
-	if(plugin::check_handin(\%itemcount, 16390 => 1)) {#Crumpled Piece of Paper
+	if(plugin::check_handin(\%itemcount, 16390 => 1) and quest::is_the_planes_of_power_enabled()) {#Crumpled Piece of Paper
 		quest::say("Ahhh! You found it! Here let me make you a copy and put this in a secure spot so I don't lose it again.");
 		quest::summonitem(24098);#Remiss Sketch
 		quest::exp(5061818);#This is 2% of level 53 xp.
